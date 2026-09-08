@@ -1,3 +1,6 @@
+// Fragmento saneado con opciones verificadas durante la implementación.
+// No pretende reemplazar íntegramente /etc/bind/named.conf.options.
+
 acl "nodosur-clients" {
     localhost;
     10.30.248.0/24;
@@ -18,5 +21,5 @@ options {
         10.33.199.59;
     };
 
-    listen-on-v6 { none; };
+    // Otras opciones del archivo real se omiten en este ejemplo saneado.
 };
