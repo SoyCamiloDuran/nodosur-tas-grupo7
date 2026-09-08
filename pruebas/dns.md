@@ -1,0 +1,60 @@
+# Prueba reproducible — DNS autoritativo
+
+## Objetivo
+
+Comprobar que BIND9 en `.59` responde por UDP/TCP 53 para la zona `nodosur07.tas` y entrega los registros usados por la arquitectura.
+
+## Consultas directas
+
+```bash
+dig @10.33.195.205 nodosur07.tas A +short
+dig @10.33.195.205 www.nodosur07.tas A +short
+dig @10.33.195.205 db.nodosur07.tas A +short
+dig @10.33.195.205 ns1.nodosur07.tas A +short
+dig @10.33.195.205 nodosur07.tas A +tcp +short
+```
+
+Resultados esperados:
+
+- `nodosur07.tas` → `10.33.195.202`
+- `www.nodosur07.tas` → `10.33.195.202`
+- `db.nodosur07.tas` → `10.33.199.60`
+- `ns1.nodosur07.tas` → `10.33.195.205`
+- La consulta TCP del apex también responde `10.33.195.202`.
+
+## Validación de configuración en .59
+
+```bash
+sudo named-checkconf
+sudo named-checkzone nodosur07.tas /etc/bind/db.nodosur07.tas
+systemctl is-active named
+systemctl is-enabled named
+```
+
+`named-checkconf` sin salida indica sintaxis correcta; `named-checkzone` debe terminar en `OK`.
+
+## Evidencia de consulta DNS
+
+Logging temporal:
+
+```bash
+sudo rndc querylog on
+sudo rndc status | grep -i query
+```
+
+Desde cliente:
+
+```bash
+dig @10.33.195.205 db.nodosur07.tas A +short
+```
+
+En `.59`:
+
+```bash
+sudo journalctl -u named --since '2 minutes ago' --no-pager
+sudo rndc querylog off
+```
+
+Resultado validado el 08-09-2026: BIND registró una consulta A desde `10.30.248.3` por `db.nodosur07.tas` y respondió `10.33.199.60`.
+
+> El query logging se apaga al finalizar para evitar registrar todas las consultas de forma permanente.
