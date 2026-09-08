@@ -1,0 +1,4 @@
+[mysqld]
+# Servicio de base de datos accesible solo por la red interna del Grupo 7.
+bind-address = 10.33.199.60
+port = 3306
