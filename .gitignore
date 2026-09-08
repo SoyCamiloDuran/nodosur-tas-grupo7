@@ -1,0 +1,27 @@
+# Secretos y credenciales
+.env
+.env.*
+*.key
+*.pem
+id_rsa*
+id_ed25519*
+wp-config.php
+
+# Dumps y respaldos sensibles
+*.sql
+*.sql.gz
+*.dump
+*.bak
+*.tar
+*.tar.gz
+
+# Archivos temporales/editor
+*.swp
+*.tmp
+~*
+.DS_Store
+
+# Evidencias locales no saneadas
+private/
+secretos/
+credenciales/
