@@ -52,6 +52,7 @@ Flujo principal:
 - `docs/`: decisiones de arquitectura.
 - `BITACORA.md`: incidentes técnicos reales y su resolución.
 - `CONTRIBUCIONES.md`: registro verificable de trabajo por integrante.
+- `CHECKLIST_ENTREGA2.md`: estado consolidado y pendientes antes de entregar.
 
 ## Seguridad
 
@@ -65,9 +66,22 @@ La cuenta temporal de revisión docente y sus credenciales se documentan **fuera
 
 ## Validación rápida
 
+Los scripts se almacenan como archivos de texto reproducibles. Pueden ejecutarse explícitamente con Bash:
+
 ```bash
-./scripts/validate-web.sh
-./scripts/validate-dns.sh
+bash scripts/validate-web.sh
+bash scripts/validate-dns.sh
+```
+
+En los servidores correspondientes también están disponibles:
+
+```bash
+bash scripts/validate-db-local.sh
+bash scripts/validate-ssh-config.sh
 ```
 
 Las pruebas de DB/SSH requieren ejecutarse desde hosts/redes autorizadas y están documentadas en `pruebas/`.
+
+## Pendientes de cierre
+
+El estado exacto está en `CHECKLIST_ENTREGA2.md`. No se declara como finalizado el **flujo empresarial WooCommerce** ni la **tabla de contribuciones por integrante** hasta incorporar evidencia real del equipo.
