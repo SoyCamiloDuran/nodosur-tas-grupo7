@@ -1,0 +1,22 @@
+acl "nodosur-clients" {
+    localhost;
+    10.30.248.0/24;
+    10.33.119.0;
+    10.33.199.56/29;
+    10.33.21.0/24;
+};
+
+options {
+    directory "/var/cache/bind";
+
+    recursion no;
+    allow-query { nodosur-clients; };
+
+    listen-on {
+        127.0.0.1;
+        10.33.195.205;
+        10.33.199.59;
+    };
+
+    listen-on-v6 { none; };
+};
