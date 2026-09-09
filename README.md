@@ -34,8 +34,13 @@ Flujo principal:
 - SSH restringido a redes VPN/laboratorio y a miembros de `ssh-nodosur`.
 - `PermitRootLogin no`.
 - Cuentas nominativas para los integrantes del equipo.
+- **Sudo limitado por rol** para las cuentas operativas mediante `nodosur-ops`.
+- Acceso a logs mediante `systemd-journal` sin entregar root irrestricto.
+- Una cuenta bootstrap/recovery por VM con sudo completo.
+- Cuenta temporal `tas_revision` con sudo completo exclusivamente para revisión docente.
 - Logs y pruebas reproducibles para web, DNS, SSH y MariaDB.
 - VMs actualizadas y validadas después del mantenimiento.
+- Flujo WooCommerce validado mediante el pedido de prueba `#71`, correlacionado con MariaDB `.60`.
 
 ## Redes relevantes
 
@@ -46,6 +51,7 @@ Flujo principal:
 ## Estructura del repositorio
 
 - `configs/`: ejemplos saneados de configuración.
+- `configs/sudo/`: política reproducible de privilegios por rol.
 - `scripts/`: validaciones no destructivas.
 - `pruebas/`: procedimientos reproducibles y resultados esperados.
 - `evidencias/`: guía para capturas/logs de evidencia.
@@ -62,7 +68,9 @@ Las configuraciones incluidas están saneadas y usan placeholders cuando corresp
 
 ## Acceso de revisión
 
-La cuenta temporal de revisión docente y sus credenciales se documentan **fuera del repositorio**. No se almacenan secretos aquí.
+La cuenta temporal `tas_revision` dispone de privilegios administrativos completos en las tres VMs para facilitar la evaluación docente. Sus credenciales se documentan **fuera del repositorio** y deben revocarse al finalizar la evaluación.
+
+Las cuentas del equipo usan privilegios limitados según el rol de cada VM. Los accesos completos de contingencia permanecen en las cuentas bootstrap/recovery y no se consideran cuentas operativas diarias.
 
 ## Validación rápida
 
@@ -84,4 +92,4 @@ Las pruebas de DB/SSH requieren ejecutarse desde hosts/redes autorizadas y está
 
 ## Pendientes de cierre
 
-El estado exacto está en `CHECKLIST_ENTREGA2.md`. No se declara como finalizado el **flujo empresarial WooCommerce** ni la **tabla de contribuciones por integrante** hasta incorporar evidencia real del equipo.
+El flujo empresarial WooCommerce ya está validado. Los pendientes reales son completar, si corresponde, `CONTRIBUCIONES.md`, realizar el último barrido antes de publicar el repositorio y preparar la defensa individual.
