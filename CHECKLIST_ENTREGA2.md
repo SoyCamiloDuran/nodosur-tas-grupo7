@@ -18,9 +18,10 @@ Estado técnico consolidado del repositorio. No reemplaza la rúbrica oficial.
 | Logs/observabilidad | Validado | `pruebas/logs-observabilidad.md` |
 | VMs actualizadas | Validado | `pruebas/actualizaciones.md` |
 | Bitácora de incidentes | Documentada | `BITACORA.md` |
-| Manejo de secretos | Documentado | `SECURITY.md`, `.gitignore` |
+| Manejo de secretos | **Validado para publicación** | `SECURITY.md`, `.gitignore`, barrido del árbol actual |
 | Flujo empresarial WooCommerce | **Validado** | pedido `#71` correlacionado cliente → admin → MariaDB, `pruebas/flujo-woocommerce.md` |
 | Contribuciones por integrante | **Documentadas** | `CONTRIBUCIONES.md`; sin inventar reparto retrospectivo |
+| Coherencia documental pre-publicación | **Validada** | README, arquitectura, decisiones, scripts y pruebas alineados con el estado final |
 | Defensa individual | **Pendiente de preparación** | documentación del repositorio |
 
 ## Estado de privilegios administrativos
@@ -45,8 +46,15 @@ La cuenta `tas_revision` es temporal para revisión docente y posee sudo complet
 
 Las contribuciones se registraron de forma retrospectiva a partir de lo efectivamente realizado. Debido a que el repositorio se consolidó al final del hito, el historial de Git no representa por sí solo toda la distribución del trabajo. `CONTRIBUCIONES.md` distingue explícitamente entre implementación final, documentación, pruebas y aportes exploratorios no incorporados.
 
+## Barrido pre-publicación
+
+Se revisó el árbol actual del repositorio antes de exponerlo públicamente. El estado validado no contiene archivos `.env`, claves privadas `.key/.pem`, dumps `.sql/.dump`, respaldos comprimidos, `wp-config.php` real ni contraseñas de cuentas Linux, WordPress o MariaDB. El ejemplo de WordPress utiliza un placeholder para `DB_PASSWORD` y las credenciales de `tas_revision` permanecen fuera de GitHub.
+
+También se corrigieron referencias documentales anteriores que ya no coincidían con el estado final, especialmente la política de sudo y la validación administrativa de MariaDB.
+
 ## Pendientes reales de cierre
 
 1. **Defensa:** preparar explicación individual de arquitectura, decisiones, diagnóstico y validaciones.
 2. **SPOF:** la arquitectura actual mantiene un único DNS, web y DB por rol. No declarar HAProxy/NFS/segundo backend como implementados.
-3. **Publicación del repositorio:** antes de hacerlo público, realizar una última revisión de secretos, datos personales y consistencia documental.
+
+El repositorio se considera técnicamente listo para publicación y revisión docente.
