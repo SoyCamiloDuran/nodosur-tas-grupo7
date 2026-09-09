@@ -1,0 +1,12 @@
+Cmnd_Alias NODOSUR_WEB = \
+    /usr/bin/systemctl reload apache2, \
+    /usr/bin/systemctl restart apache2, \
+    /usr/bin/systemctl reload php8.3-fpm, \
+    /usr/bin/systemctl restart php8.3-fpm, \
+    /usr/sbin/apache2ctl configtest, \
+    /usr/sbin/php-fpm8.3 -t, \
+    /usr/sbin/ufw status, \
+    /usr/sbin/ufw status verbose, \
+    /usr/sbin/ufw status numbered
+
+%nodosur-ops ALL=(root) NODOSUR_WEB
