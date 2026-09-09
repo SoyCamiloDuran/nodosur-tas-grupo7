@@ -6,11 +6,11 @@ Comprobar que el acceso administrativo es nominativo, que root no entra directam
 
 ## Configuración SSH efectiva
 
-En cada VM:
+La comprobación completa de `sshd -t/-T` requiere `tas_revision` o la cuenta bootstrap/recovery de la VM, porque esos comandos no forman parte del sudo limitado de las cuentas operativas:
 
 ```bash
-sudo sshd -t
-sudo sshd -T | grep -E \
+sudo /usr/sbin/sshd -t
+sudo /usr/sbin/sshd -T | grep -E \
 'permitrootlogin|pubkeyauthentication|passwordauthentication|kbdinteractiveauthentication|allowgroups'
 ```
 
@@ -25,6 +25,8 @@ allowgroups ssh-nodosur
 ```
 
 ## Identidades y grupos
+
+Estas consultas no requieren sudo:
 
 ```bash
 getent group ssh-nodosur
@@ -136,8 +138,10 @@ y se comprobó el pedido WooCommerce `#71` dentro de `nodo_sur_final`.
 
 ## Firewall
 
+La consulta de UFW está incluida en las políticas de sudo de `nodosur-ops`:
+
 ```bash
-sudo ufw status numbered
+sudo /usr/sbin/ufw status numbered
 ```
 
 El puerto 22 debe estar permitido desde:
