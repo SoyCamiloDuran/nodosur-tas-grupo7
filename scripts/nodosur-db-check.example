@@ -1,0 +1,16 @@
+#!/bin/bash
+set -e
+
+echo "===== ESTADO MARIADB ====="
+/usr/bin/systemctl is-active mariadb
+
+echo "===== LISTENER 3306 ====="
+/usr/bin/ss -lntp | /usr/bin/grep ':3306'
+
+echo "===== VERSION ====="
+/usr/bin/mariadb --batch --skip-column-names \
+    -e "SELECT VERSION();"
+
+echo "===== BASE NODO SUR ====="
+/usr/bin/mariadb --batch --skip-column-names \
+    -e "SELECT SCHEMA_NAME FROM information_schema.SCHEMATA WHERE SCHEMA_NAME='nodo_sur_final';"
