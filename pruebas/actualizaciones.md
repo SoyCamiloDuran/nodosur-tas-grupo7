@@ -19,6 +19,8 @@ sudo apt upgrade
 
 No se utilizó `full-upgrade`.
 
+> **Privilegios actuales:** el mantenimiento de paquetes no forma parte del sudo operativo limitado de `nodosur-ops`. Una actualización posterior debe realizarse mediante la cuenta bootstrap/recovery de la VM o, durante la evaluación, mediante `tas_revision`.
+
 ## Reboot requerido
 
 ```bash
