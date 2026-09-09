@@ -1,0 +1,9 @@
+Cmnd_Alias NODOSUR_DB = \
+    /usr/bin/systemctl restart mariadb, \
+    /usr/bin/systemctl reload mariadb, \
+    /usr/local/sbin/nodosur-db-check, \
+    /usr/sbin/ufw status, \
+    /usr/sbin/ufw status verbose, \
+    /usr/sbin/ufw status numbered
+
+%nodosur-ops ALL=(root) NODOSUR_DB
