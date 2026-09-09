@@ -43,11 +43,17 @@ La VM web utiliza Apache con PHP-FPM en lugar de mantener PHP embebido con `mod_
 
 `wp-content/uploads` usa un LV LVM de 20 GiB montado persistentemente por UUID. Los uploads son datos mutables y esta separación facilita administración, respaldo y una futura migración a almacenamiento compartido.
 
-## 8. Acceso administrativo nominativo
+## 8. Acceso administrativo nominativo y mínimo privilegio
 
-Los integrantes usan cuentas individuales y pertenecen a `ssh-nodosur`. `PermitRootLogin no` evita acceso SSH directo como root. UFW limita el origen del tráfico administrativo a VPN/laboratorio.
+Los integrantes usan cuentas individuales y pertenecen a `ssh-nodosur`. `PermitRootLogin no` evita acceso SSH directo como root y UFW limita el origen del tráfico administrativo a VPN/laboratorio.
 
-Todos los integrantes cumplen funciones de administración en el proyecto y actualmente poseen privilegios sudo equivalentes. La cuenta `tas_revision` es temporal y separada para revisión docente.
+Las cuentas operativas (`cduran`, `nmatamala`, `jsaez`, `jdiaz`) pertenecen a `nodosur-ops` y `systemd-journal`, pero no al grupo `sudo`. Cada VM autoriza únicamente los comandos necesarios para operar el servicio correspondiente mediante reglas específicas de sudo:
+
+- `.58 WEB`: operaciones controladas sobre Apache, PHP-FPM y consulta de UFW.
+- `.59 DNS`: operaciones controladas sobre BIND/rndc, validación de zona y consulta de UFW.
+- `.60 DB`: gestión del servicio MariaDB, comprobación mediante script fijo propiedad de root y consulta de UFW.
+
+Cada VM conserva una cuenta bootstrap/recovery con sudo completo para contingencias. La cuenta `tas_revision` dispone temporalmente de sudo completo exclusivamente para revisión docente y debe revocarse al finalizar la evaluación.
 
 ## 9. SPOF declarados
 
