@@ -6,6 +6,8 @@ Comprobar que `wp-content/uploads` utiliza un volumen LVM dedicado, persiste med
 
 ## Estado esperado en VM .58
 
+Las comprobaciones que requieren inspección de LVM, propietarios o cambio de identidad deben ejecutarse con `tas_revision` o la cuenta bootstrap/recovery de `.58`, ya que no forman parte del sudo operativo limitado de `nodosur-ops`:
+
 ```bash
 sudo lvs
 findmnt /var/www/html/wp-content/uploads
@@ -33,6 +35,8 @@ UUID=7b7c4007-3883-46bf-9a66-a32ab7d5622d /var/www/html/wp-content/uploads ext4 
 ```
 
 ## Prueba de escritura con identidad de la aplicación
+
+Ejecutar con `tas_revision` o la cuenta bootstrap/recovery:
 
 ```bash
 sudo -u www-data sh -c \
