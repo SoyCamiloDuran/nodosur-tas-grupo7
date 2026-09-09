@@ -1,0 +1,14 @@
+Cmnd_Alias NODOSUR_DNS = \
+    /usr/bin/systemctl reload named, \
+    /usr/bin/systemctl restart named, \
+    /usr/sbin/rndc status, \
+    /usr/sbin/rndc reload, \
+    /usr/sbin/rndc querylog on, \
+    /usr/sbin/rndc querylog off, \
+    /usr/bin/named-checkconf, \
+    /usr/bin/named-checkzone nodosur07.tas /etc/bind/db.nodosur07.tas, \
+    /usr/sbin/ufw status, \
+    /usr/sbin/ufw status verbose, \
+    /usr/sbin/ufw status numbered
+
+%nodosur-ops ALL=(root) NODOSUR_DNS
