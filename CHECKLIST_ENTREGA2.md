@@ -31,7 +31,7 @@ Las cuentas nominativas del equipo (`cduran`, `nmatamala`, `jsaez`, `jdiaz`) ya 
 - `.59 DNS`: BIND/rndc, validación de zona y consulta de UFW.
 - `.60 DB`: gestión del servicio MariaDB, comprobación mediante script fijo y consulta de UFW.
 
-Los integrantes pueden leer el journal de servicios mediante `systemd-journal`. Las pruebas negativas `sudo /bin/bash` fueron rechazadas en las tres VMs; en `.60` también se confirmó que `sudo /usr/bin/mariadb` está bloquequeado para las cuentas operativas.
+Los integrantes pueden leer el journal de servicios mediante `systemd-journal`. Las pruebas negativas `sudo /bin/bash` fueron rechazadas en las tres VMs; en `.60` también se confirmó que `sudo /usr/bin/mariadb` está bloqueado para las cuentas operativas.
 
 Cada VM conserva una cuenta bootstrap/recovery con sudo completo:
 
