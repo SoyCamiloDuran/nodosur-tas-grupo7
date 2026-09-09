@@ -20,7 +20,7 @@ Estado técnico consolidado del repositorio. No reemplaza la rúbrica oficial.
 | Bitácora de incidentes | Documentada | `BITACORA.md` |
 | Manejo de secretos | Documentado | `SECURITY.md`, `.gitignore` |
 | Flujo empresarial WooCommerce | **Validado** | pedido `#71` correlacionado cliente → admin → MariaDB, `pruebas/flujo-woocommerce.md` |
-| Contribuciones verificables por integrante | **Pendiente de completar** | `CONTRIBUCIONES.md` |
+| Contribuciones por integrante | **Documentadas** | `CONTRIBUCIONES.md`; sin inventar reparto retrospectivo |
 | Defensa individual | **Pendiente de preparación** | documentación del repositorio |
 
 ## Estado de privilegios administrativos
@@ -41,9 +41,12 @@ Cada VM conserva una cuenta bootstrap/recovery con sudo completo:
 
 La cuenta `tas_revision` es temporal para revisión docente y posee sudo completo en las tres VMs. Su contraseña se mantiene fuera del repositorio y debe revocarse al finalizar la evaluación.
 
+## Contribuciones
+
+Las contribuciones se registraron de forma retrospectiva a partir de lo efectivamente realizado. Debido a que el repositorio se consolidó al final del hito, el historial de Git no representa por sí solo toda la distribución del trabajo. `CONTRIBUCIONES.md` distingue explícitamente entre implementación final, documentación, pruebas y aportes exploratorios no incorporados.
+
 ## Pendientes reales de cierre
 
-1. **Contribuciones:** completar únicamente tareas reales por integrante; no inventar reparto retrospectivo.
-2. **Defensa:** preparar explicación individual de arquitectura, decisiones, diagnóstico y validaciones.
-3. **SPOF:** la arquitectura actual mantiene un único DNS, web y DB por rol. No declarar HAProxy/NFS/segundo backend como implementados.
-4. **Publicación del repositorio:** antes de hacerlo público, realizar una última revisión de secretos, datos personales y consistencia documental.
+1. **Defensa:** preparar explicación individual de arquitectura, decisiones, diagnóstico y validaciones.
+2. **SPOF:** la arquitectura actual mantiene un único DNS, web y DB por rol. No declarar HAProxy/NFS/segundo backend como implementados.
+3. **Publicación del repositorio:** antes de hacerlo público, realizar una última revisión de secretos, datos personales y consistencia documental.
