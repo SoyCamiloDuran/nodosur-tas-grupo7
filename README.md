@@ -65,7 +65,7 @@ Flujo principal:
 
 **Este repositorio no debe contener credenciales, contraseñas, salts, claves privadas, dumps con datos sensibles ni archivos `wp-config.php` reales.**
 
-Las configuraciones incluidas están saneadas y usan placeholders cuando corresponde.
+Las configuraciones incluidas están saneadas y usan placeholders cuando corresponde. El barrido pre-publicación verificó además que el árbol actual no contiene archivos `.env`, dumps SQL, claves privadas TLS/SSH ni respaldos sensibles.
 
 ## Acceso de revisión
 
@@ -75,22 +75,31 @@ Las cuentas del equipo usan privilegios limitados según el rol de cada VM. Los 
 
 ## Validación rápida
 
-Los scripts se almacenan como archivos de texto reproducibles. Pueden ejecutarse explícitamente con Bash:
+Desde un cliente de las redes autorizadas:
 
 ```bash
 bash scripts/validate-web.sh
 bash scripts/validate-dns.sh
 ```
 
-En los servidores correspondientes también están disponibles:
+En `.60`, las cuentas operativas pueden ejecutar:
 
 ```bash
 bash scripts/validate-db-local.sh
+```
+
+El script utiliza `/usr/local/sbin/nodosur-db-check`, autorizado por la política de sudo limitada, y no entrega una consola MariaDB ejecutada arbitrariamente como root.
+
+La validación completa de la configuración de SSH mediante:
+
+```bash
 bash scripts/validate-ssh-config.sh
 ```
 
-Las pruebas de DB/SSH requieren ejecutarse desde hosts/redes autorizadas y están documentadas en `pruebas/`.
+requiere `tas_revision` o la cuenta bootstrap/recovery de la VM, porque `sshd -t/-T` necesita privilegios que deliberadamente no se entregan a las cuentas operativas.
+
+Las pruebas detalladas están documentadas en `pruebas/`.
 
 ## Pendientes de cierre
 
-El flujo empresarial WooCommerce y el registro de contribuciones ya están documentados. Los pendientes reales son realizar el último barrido antes de publicar el repositorio y preparar la defensa individual.
+El flujo empresarial WooCommerce, el registro de contribuciones y el barrido pre-publicación ya están cerrados. El pendiente académico restante es preparar la defensa individual.
