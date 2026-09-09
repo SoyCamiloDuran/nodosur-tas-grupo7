@@ -24,9 +24,11 @@ Resultados esperados:
 
 ## Validación de configuración en .59
 
+Las cuentas operativas de `nodosur-ops` poseen permisos específicos para validar BIND:
+
 ```bash
-sudo named-checkconf
-sudo named-checkzone nodosur07.tas /etc/bind/db.nodosur07.tas
+sudo /usr/bin/named-checkconf
+sudo /usr/bin/named-checkzone nodosur07.tas /etc/bind/db.nodosur07.tas
 systemctl is-active named
 systemctl is-enabled named
 ```
@@ -38,8 +40,8 @@ systemctl is-enabled named
 Logging temporal:
 
 ```bash
-sudo rndc querylog on
-sudo rndc status | grep -i query
+sudo /usr/sbin/rndc querylog on
+sudo /usr/sbin/rndc status | grep -i query
 ```
 
 Desde cliente:
@@ -48,11 +50,11 @@ Desde cliente:
 dig @10.33.195.205 db.nodosur07.tas A +short
 ```
 
-En `.59`:
+En `.59`, los integrantes pueden leer el journal mediante `systemd-journal`:
 
 ```bash
-sudo journalctl -u named --since '2 minutes ago' --no-pager
-sudo rndc querylog off
+journalctl -u named --since '2 minutes ago' --no-pager
+sudo /usr/sbin/rndc querylog off
 ```
 
 Resultado validado el 08-09-2026: BIND registró una consulta A desde `10.30.248.3` por `db.nodosur07.tas` y respondió `10.33.199.60`.
