@@ -41,6 +41,7 @@ Flujo principal:
 - Logs y pruebas reproducibles para web, DNS, SSH y MariaDB.
 - VMs actualizadas y validadas después del mantenimiento.
 - Flujo WooCommerce validado mediante el pedido de prueba `#71`, correlacionado con MariaDB `.60`.
+- Contribuciones del equipo registradas en `CONTRIBUCIONES.md` sin inventar reparto retrospectivo.
 
 ## Redes relevantes
 
@@ -57,7 +58,7 @@ Flujo principal:
 - `evidencias/`: guía para capturas/logs de evidencia.
 - `docs/`: decisiones de arquitectura.
 - `BITACORA.md`: incidentes técnicos reales y su resolución.
-- `CONTRIBUCIONES.md`: registro verificable de trabajo por integrante.
+- `CONTRIBUCIONES.md`: registro de trabajo real por integrante y evidencia disponible.
 - `CHECKLIST_ENTREGA2.md`: estado consolidado y pendientes antes de entregar.
 
 ## Seguridad
@@ -92,4 +93,4 @@ Las pruebas de DB/SSH requieren ejecutarse desde hosts/redes autorizadas y está
 
 ## Pendientes de cierre
 
-El flujo empresarial WooCommerce ya está validado. Los pendientes reales son completar, si corresponde, `CONTRIBUCIONES.md`, realizar el último barrido antes de publicar el repositorio y preparar la defensa individual.
+El flujo empresarial WooCommerce y el registro de contribuciones ya están documentados. Los pendientes reales son realizar el último barrido antes de publicar el repositorio y preparar la defensa individual.
